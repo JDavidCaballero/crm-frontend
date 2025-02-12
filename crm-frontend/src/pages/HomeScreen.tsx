@@ -18,7 +18,7 @@ export default function HomeScreen() {
       <h1 className="text-3xl font-bold text-center mb-8">
         CRM - Gestión de Clientes
       </h1>
-      <Tabs defaultValue="leads" className="max-w-4xl mx-auto">
+      <Tabs defaultValue="leads" className="max-w-7xl mx-auto">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="leads">Leads</TabsTrigger>
           <TabsTrigger value="prospects">Prospectos</TabsTrigger>

@@ -1,66 +1,14 @@
-import { useState } from "react"
 import { Lead } from "./LeadList"
+import SearchInput from "./SearchInput"
+import { useSortableLeadsOrProspects } from "../hooks/useSortTable"
 
 export default function ProspectList({
   prospectsData,
 }: {
   prospectsData: Lead[]
 }) {
-  const [prospects, setProspects] = useState(prospectsData)
-
-  const [searchTerm, setSearchTerm] = useState("")
-  const [sortConfig, setSortConfig] = useState<{
-    key: string | null
-    direction: "asc" | "desc"
-  }>({ key: null, direction: "asc" })
-
-  // Función para ordenar la tabla
-  const sortTable = (key: keyof (typeof prospects)[0]) => {
-    let direction: "asc" | "desc" = "asc"
-    if (sortConfig.key === key && sortConfig.direction === "asc") {
-      direction = "desc"
-    }
-
-    const sortedprospects = [...prospects].sort((a, b) => {
-      if (key === "identification" || key === "age") {
-        return direction === "asc"
-          ? Number(a[key]) - Number(b[key])
-          : Number(b[key]) - Number(a[key])
-      } else if (key === "birthdate") {
-        return direction === "asc"
-          ? new Date(a[key]).getTime() - new Date(b[key]).getTime()
-          : new Date(b[key]).getTime() - new Date(a[key]).getTime()
-      } else {
-        return direction === "asc"
-          ? String(a[key]).localeCompare(String(b[key]))
-          : String(b[key]).localeCompare(String(a[key]))
-      }
-    })
-
-    setProspects(sortedprospects)
-    setSortConfig({ key, direction })
-  }
-
-  // Función para remover acentos de una cadena de texto
-  const removeAccents = (str: string) =>
-    str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-
-  // Función para filtrar la tabla según el input
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = removeAccents(e.target.value.toLowerCase())
-    setSearchTerm(e.target.value)
-
-    if (value === "") {
-      setProspects(prospectsData)
-    } else {
-      const filteredprospects = prospectsData.filter(
-        (lead) =>
-          removeAccents(lead.firstName.toLowerCase()).includes(value) ||
-          removeAccents(lead.lastName.toLowerCase()).includes(value)
-      )
-      setProspects(filteredprospects)
-    }
-  }
+  const { searchTerm, filteredData, sortTable, handleSearch, sortConfig } =
+    useSortableLeadsOrProspects(prospectsData)
 
   return (
     <div className="w-full bg-white p-6 rounded-lg shadow-md">
@@ -68,13 +16,7 @@ export default function ProspectList({
         <>
           <div className="mb-4">
             {/* Input para buscar en la tabla */}
-            <input
-              type="text"
-              placeholder="Buscar por nombre o apellido..."
-              value={searchTerm}
-              onChange={handleSearch}
-              className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
           </div>
 
           <div className="overflow-x-auto">
@@ -96,7 +38,7 @@ export default function ProspectList({
                     >
                       <button
                         onClick={() =>
-                          sortTable(key as keyof (typeof prospects)[0])
+                          sortTable(key as keyof (typeof filteredData)[0])
                         }
                         className="flex items-center space-x-1"
                       >
@@ -117,7 +59,7 @@ export default function ProspectList({
                 </tr>
               </thead>
               <tbody>
-                {prospects.map((lead) => (
+                {filteredData.map((lead) => (
                   <tr key={lead.id} className="border border-gray-300">
                     <td className="text-black border border-gray-300 px-4 py-2">
                       {lead.firstName}
@@ -142,7 +84,7 @@ export default function ProspectList({
                     </td>
                   </tr>
                 ))}
-                {prospects.length === 0 && (
+                {filteredData.length === 0 && (
                   <tr>
                     <td colSpan={8} className="text-center text-gray-500 py-4">
                       No se encontraron resultados.

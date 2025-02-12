@@ -1,6 +1,8 @@
-import { useState } from "react"
 import ConfirmationModal from "./ConfirmationModal"
 import leadsData from "../services/leadsData.json"
+import SearchInput from "./SearchInput"
+import { useSortableLeadsOrProspects } from "../hooks/useSortTable"
+import { useState } from "react"
 
 export interface Lead {
   id: number
@@ -18,74 +20,16 @@ export default function LeadList({
 }: {
   setProspects: React.Dispatch<React.SetStateAction<Lead[]>>
 }) {
-  const leadsDataCopy = leadsData as Lead[]
-  const [leads, setLeads] = useState(leadsDataCopy)
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [sortConfig, setSortConfig] = useState<{
-    key: string | null
-    direction: "asc" | "desc"
-  }>({ key: null, direction: "asc" })
 
-  // Función para ordenar la tabla
-  const sortTable = (key: keyof (typeof leads)[0]) => {
-    let direction: "asc" | "desc" = "asc"
-    if (sortConfig.key === key && sortConfig.direction === "asc") {
-      direction = "desc"
-    }
-
-    const sortedLeads = [...leads].sort((a, b) => {
-      if (key === "identification" || key === "age") {
-        return direction === "asc"
-          ? Number(a[key]) - Number(b[key])
-          : Number(b[key]) - Number(a[key])
-      } else if (key === "birthdate") {
-        return direction === "asc"
-          ? new Date(a[key]).getTime() - new Date(b[key]).getTime()
-          : new Date(b[key]).getTime() - new Date(a[key]).getTime()
-      } else {
-        return direction === "asc"
-          ? String(a[key]).localeCompare(String(b[key]))
-          : String(b[key]).localeCompare(String(a[key]))
-      }
-    })
-
-    setLeads(sortedLeads)
-    setSortConfig({ key, direction })
-  }
-
-  // Función para remover acentos de una cadena de texto
-  const removeAccents = (str: string) =>
-    str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-
-  // Función para filtrar la tabla según el input
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = removeAccents(e.target.value.toLowerCase())
-    setSearchTerm(e.target.value)
-
-    if (value === "") {
-      setLeads(leadsDataCopy)
-    } else {
-      const filteredLeads = leadsDataCopy.filter(
-        (lead) =>
-          removeAccents(lead.firstName.toLowerCase()).includes(value) ||
-          removeAccents(lead.lastName.toLowerCase()).includes(value)
-      )
-      setLeads(filteredLeads)
-    }
-  }
+  const { searchTerm, filteredData, sortTable, handleSearch, sortConfig } =
+    useSortableLeadsOrProspects(leadsData)
 
   return (
     <div className="w-full bg-white p-6 rounded-lg shadow-md">
       <div className="mb-4">
         {/* Input para buscar en la tabla */}
-        <input
-          type="text"
-          placeholder="Buscar por nombre o apellido..."
-          value={searchTerm}
-          onChange={handleSearch}
-          className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+        <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
       </div>
 
       <div className="overflow-x-auto">
@@ -106,7 +50,9 @@ export default function LeadList({
                   className="text-black border border-gray-300 px-4 py-2 text-left"
                 >
                   <button
-                    onClick={() => sortTable(key as keyof (typeof leads)[0])}
+                    onClick={() =>
+                      sortTable(key as keyof (typeof filteredData)[0])
+                    }
                     className="flex items-center space-x-1"
                   >
                     <span>{label}</span>
@@ -129,7 +75,7 @@ export default function LeadList({
             </tr>
           </thead>
           <tbody>
-            {leads.map((lead) => (
+            {filteredData.map((lead) => (
               <tr key={lead.id} className="border border-gray-300">
                 <td className="text-black border border-gray-300 px-4 py-2">
                   {lead.firstName}
@@ -162,7 +108,7 @@ export default function LeadList({
                 </td>
               </tr>
             ))}
-            {leads.length === 0 && (
+            {filteredData.length === 0 && (
               <tr>
                 <td colSpan={8} className="text-center text-gray-500 py-4">
                   No se encontraron resultados.
