@@ -1,0 +1,53 @@
+[
+    {
+      "id": 1,
+      "identification": "1023456789",
+      "birthdate": "1990-05-14",
+      "firstName": "Carlos",
+      "lastName": "Ramírez",
+      "age": 33,
+      "email": "carlos.ramirez@mail.com",
+      "phone": "+57 301 234 5678"
+    },
+    {
+      "id": 2,
+      "identification": "1009876543",
+      "birthdate": "1985-09-22",
+      "firstName": "María",
+      "lastName": "González",
+      "age": 38,
+      "email": "maria.gonzalez@mail.com",
+      "phone": "+57 312 456 7890"
+    },
+    {
+      "id": 3,
+      "identification": "1034567890",
+      "birthdate": "1995-02-10",
+      "firstName": "Juan",
+      "lastName": "Pérez",
+      "age": 29,
+      "email": "juan.perez@mail.com",
+      "phone": "+57 310 678 9012"
+    },
+    {
+      "id": 4,
+      "identification": "1012345678",
+      "birthdate": "1992-07-30",
+      "firstName": "Andrea",
+      "lastName": "Torres",
+      "age": 31,
+      "email": "andrea.torres@mail.com",
+      "phone": "+57 315 890 1234"
+    },
+    {
+      "id": 5,
+      "identification": "1045678901",
+      "birthdate": "1988-12-18",
+      "firstName": "Luis",
+      "lastName": "Fernández",
+      "age": 35,
+      "email": "luis.fernandez@mail.com",
+      "phone": "+57 320 345 6789"
+    }
+  ]
+  
