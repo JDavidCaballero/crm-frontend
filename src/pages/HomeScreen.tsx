@@ -8,10 +8,29 @@ import {
 } from "../components/Card"
 import LeadList, { Lead } from "../components/LeadList"
 import ProspectList from "../components/ProspectList"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useQuery } from "@tanstack/react-query"
+import { getLeads } from "../services/getLeads"
 
 export default function HomeScreen() {
   const [propspects, setProspects] = useState<Lead[]>([])
+  const [leads, setLeads] = useState<Lead[] | null>(null)
+
+  const { isLoading, data: fetchedLeads = [] } = useQuery({
+    queryKey: ["leads"],
+    queryFn: getLeads,
+    onError: (error) => {
+      console.error("Error al cargar leads:", error)
+      //aqui poner un toast de error
+    },
+  })
+
+  // Actualizar leads si se cargaron correctamente, importante verificar si es null y que la data llegue > 0 porque esto permite que no se modifique una vez el sistema ya este puesto en marcha
+  useEffect(() => {
+    if (leads === null && fetchedLeads.length > 0) {
+      setLeads(fetchedLeads)
+    }
+  }, [fetchedLeads, leads])
 
   return (
     <div className="min-h-screen bg-slate-100 p-8">
@@ -25,15 +44,27 @@ export default function HomeScreen() {
         </TabsList>
         <TabsContent value="leads">
           <Card>
-            <CardHeader>
-              <CardTitle className="text-center">Lista de Leads</CardTitle>
-              <CardDescription className="text-center">
-                Personas interesadas en nuestros servicios
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <LeadList setProspects={setProspects} />
-            </CardContent>
+            {isLoading || leads === null ? (
+              <div>Cargando...</div>
+            ) : (
+              <>
+                <CardHeader>
+                  <CardTitle className="text-center">Lista de Leads</CardTitle>
+                  <CardDescription className="text-center">
+                    Personas interesadas en nuestros servicios
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <LeadList
+                    setProspects={setProspects}
+                    leadsData={leads || []}
+                    setLeads={
+                      setLeads as React.Dispatch<React.SetStateAction<Lead[]>>
+                    }
+                  />
+                </CardContent>
+              </>
+            )}
           </Card>
         </TabsContent>
         <TabsContent value="prospects">

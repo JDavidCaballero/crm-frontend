@@ -1,5 +1,5 @@
 import { Lead } from "@components/LeadList";
-import { useState } from "react";
+import {  useEffect, useState } from "react";
 
 interface SortConfig {
   key: keyof Lead | null;
@@ -13,6 +13,10 @@ export function useSortableLeadsOrProspects(data: Lead[]) {
     key: null,
     direction: "asc",
   });
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   // Función para ordenar la tabla
   const sortTable = (key: keyof Lead) => {

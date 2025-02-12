@@ -1,5 +1,4 @@
 import ConfirmationModal from "./ConfirmationModal"
-import leadsData from "../services/leadsData.json"
 import SearchInput from "./SearchInput"
 import { useSortableLeadsOrProspects } from "../hooks/useSortTable"
 import { useState } from "react"
@@ -18,11 +17,14 @@ export interface Lead {
 
 export default function LeadList({
   setProspects,
+  leadsData,
+  setLeads,
 }: {
   setProspects: React.Dispatch<React.SetStateAction<Lead[]>>
+  leadsData: Lead[]
+  setLeads: React.Dispatch<React.SetStateAction<Lead[]>>
 }) {
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
-
   const { searchTerm, filteredData, sortTable, handleSearch, sortConfig } =
     useSortableLeadsOrProspects(leadsData)
 
@@ -62,6 +64,7 @@ export default function LeadList({
           lead={selectedLead}
           onClose={() => setSelectedLead(null)}
           setProspects={setProspects}
+          setLeadsData={setLeads}
         />
       )}
     </div>

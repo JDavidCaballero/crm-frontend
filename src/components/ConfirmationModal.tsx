@@ -5,12 +5,14 @@ interface ConfirmationModalProps {
   lead: Lead
   onClose: () => void
   setProspects: React.Dispatch<React.SetStateAction<Lead[]>>
+  setLeadsData: React.Dispatch<React.SetStateAction<Lead[]>>
 }
 
 export default function ConfirmationModal({
   lead,
   onClose,
   setProspects,
+  setLeadsData,
 }: ConfirmationModalProps) {
   const [score, setScore] = useState<number>(0)
 
@@ -22,11 +24,13 @@ export default function ConfirmationModal({
   // Validaciones
   const existsInRegistry = Math.random() > 0.2 // Simulación (80% de probabilidad de éxito) CAMBIAR
   const noJudicialRecords = Math.random() > 0.1 // Simulación (90% de probabilidad de éxito) CAMBIAR
-  const satisfactoryScore = score > 60
+  const satisfactoryScore = score > 60 // Puntaje aleatorio para ser admitido
 
+  // Si cumple con los requisitos, se convierte en prospecto y se elimina de la lista de leads
   if (existsInRegistry && noJudicialRecords && satisfactoryScore) {
     setProspects((prospects) => {
       if (!prospects.some((p) => p.id === lead.id)) {
+        setLeadsData((leads) => leads.filter((l) => l.id !== lead.id))
         return [...prospects, lead]
       }
       return prospects
