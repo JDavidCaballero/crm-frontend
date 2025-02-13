@@ -1,0 +1,24 @@
+[
+ 
+ 
+  {
+    "id": 4,
+    "identification": "1012345678",
+    "birthdate": "1992-07-30",
+    "firstName": "Andrea",
+    "lastName": "Torres",
+    "age": 31,
+    "email": "andrea.torres@mail.com",
+    "phone": "+57 315 890 1234"
+  }, {
+      "id": 5,
+      "identification": "1045678901",
+      "birthdate": "1988-12-18",
+      "firstName": "Luis",
+      "lastName": "Fernández",
+      "age": 35,
+      "email": "luis.fernandez@mail.com",
+      "phone": "+57 320 345 6789"
+    }
+  ]
+  

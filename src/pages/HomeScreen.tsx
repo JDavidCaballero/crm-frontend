@@ -6,11 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/Card"
-import LeadList, { Lead } from "../components/LeadList"
+import LeadList from "../components/LeadList"
 import ProspectList from "../components/ProspectList"
 import { useEffect, useState } from "react"
 import { useQuery } from "@tanstack/react-query"
-import { getLeads } from "../services/getLeads"
+import { getLeads, Lead } from "../services/get/getLeads"
+import Loader from "../components/Loader"
 
 export default function HomeScreen() {
   const [propspects, setProspects] = useState<Lead[]>([])
@@ -44,16 +45,17 @@ export default function HomeScreen() {
         </TabsList>
         <TabsContent value="leads">
           <Card>
-            {isLoading || leads === null ? (
-              <div>Cargando...</div>
-            ) : (
-              <>
-                <CardHeader>
-                  <CardTitle className="text-center">Lista de Leads</CardTitle>
-                  <CardDescription className="text-center">
-                    Personas interesadas en nuestros servicios
-                  </CardDescription>
-                </CardHeader>
+            <>
+              <CardHeader>
+                <CardTitle className="text-center">Lista de Leads</CardTitle>
+                <CardDescription className="text-center">
+                  Personas interesadas en nuestros servicios
+                </CardDescription>
+              </CardHeader>
+
+              {isLoading || leads === null ? (
+                <Loader />
+              ) : (
                 <CardContent>
                   <LeadList
                     setProspects={setProspects}
@@ -63,8 +65,8 @@ export default function HomeScreen() {
                     }
                   />
                 </CardContent>
-              </>
-            )}
+              )}
+            </>
           </Card>
         </TabsContent>
         <TabsContent value="prospects">

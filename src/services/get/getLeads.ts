@@ -1,5 +1,15 @@
-import { Lead } from "@components/LeadList";
-import leadsData from "../mocks/leadsData.json";
+import leadsData from "../../mocks/leadsData.json";
+
+export interface Lead {
+  id: number
+  firstName: string
+  lastName: string
+  identification: string
+  birthdate: string
+  age: number
+  email: string
+  phone: string
+}
 
 export const getLeads = async (): Promise<Lead[]> => {
   return new Promise((resolve, reject) => {

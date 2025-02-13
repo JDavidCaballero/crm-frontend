@@ -1,5 +1,9 @@
+import { useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
-import { Lead } from "./LeadList"
+import { getJudicialRecord } from "../services/get/getJudicialRecord"
+import { Lead } from "services/get/getLeads"
+import { getNationalRecord } from "../services/get/getNationalRecord"
+import Loader from "./Loader"
 
 interface ConfirmationModalProps {
   lead: Lead
@@ -15,6 +19,33 @@ export default function ConfirmationModal({
   setLeadsData,
 }: ConfirmationModalProps) {
   const [score, setScore] = useState<number>(0)
+  const [existsInRegistry, setExistsInRegistry] = useState<boolean>(false)
+  const [noJudicialRecords, setNoJudicialRecords] = useState<boolean>(false)
+
+  const { isLoading: isLoadingRegistry, isFetching: isFetchingRegistry } =
+    useQuery({
+      queryKey: ["nationalRegistry"],
+      queryFn: getNationalRecord,
+      onSuccess: (data) => {
+        // Verifica si el lead existe en el registro nacional
+        const found = data.some((record: Lead) => record.id === lead.id)
+        if (found !== existsInRegistry) setExistsInRegistry(found)
+      },
+    })
+
+  const { isLoading: isLoadingJudicial, isFetching: isFetchingJudicial } =
+    useQuery({
+      queryKey: ["judicialRecords"],
+      queryFn: getJudicialRecord,
+      onSuccess: (data) => {
+        // Verifica si el lead tiene antecedentes judiciales
+        const found = data.some((record: Lead) => record.id === lead.id)
+        setNoJudicialRecords(!found)
+      },
+    })
+
+  const loadingRegistry = isLoadingRegistry || isFetchingRegistry
+  const loadingJudicial = isLoadingJudicial || isFetchingJudicial
 
   useEffect(() => {
     // Generar un puntaje aleatorio entre 0 y 100 al abrir el modal
@@ -22,20 +53,28 @@ export default function ConfirmationModal({
   }, [lead])
 
   // Validaciones
-  const existsInRegistry = Math.random() > 0.2 // Simulación (80% de probabilidad de éxito) CAMBIAR
-  const noJudicialRecords = Math.random() > 0.1 // Simulación (90% de probabilidad de éxito) CAMBIAR
-  const satisfactoryScore = score > 60 // Puntaje aleatorio para ser admitido
+  const satisfactoryScore = score > 60
+  const isEligible = existsInRegistry && noJudicialRecords && satisfactoryScore
 
-  // Si cumple con los requisitos, se convierte en prospecto y se elimina de la lista de leads
-  if (existsInRegistry && noJudicialRecords && satisfactoryScore) {
-    setProspects((prospects) => {
-      if (!prospects.some((p) => p.id === lead.id)) {
-        setLeadsData((leads) => leads.filter((l) => l.id !== lead.id))
-        return [...prospects, lead]
-      }
-      return prospects
-    })
-  }
+  // Solo actualizar prospectos cuando ambas consultas hayan terminado
+  useEffect(() => {
+    if (!loadingRegistry && !loadingJudicial && isEligible) {
+      setProspects((prospects) => {
+        if (!prospects.some((p) => p.id === lead.id)) {
+          setLeadsData((leads) => leads.filter((l) => l.id !== lead.id))
+          return [...prospects, lead]
+        }
+        return prospects
+      })
+    }
+  }, [
+    loadingRegistry,
+    loadingJudicial,
+    isEligible,
+    lead,
+    setProspects,
+    setLeadsData,
+  ])
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
@@ -55,10 +94,12 @@ export default function ConfirmationModal({
           <ValidationItem
             label="Existe en el registro nacional y su información coincide"
             isValid={existsInRegistry}
+            isLoading={loadingRegistry || isFetchingRegistry}
           />
           <ValidationItem
             label="No tiene antecedentes judiciales"
             isValid={noJudicialRecords}
+            isLoading={loadingJudicial}
           />
           <ValidationItem
             label="Calificación interna del prospecto"
@@ -67,12 +108,13 @@ export default function ConfirmationModal({
           />
         </div>
 
-        <strong className="mt-5 text-center block">
-          {existsInRegistry && noJudicialRecords && satisfactoryScore
-            ? "✅ ¡El prospecto ha sido creado exitosamente!"
-            : "❌ ¡No cumple con los requisitos para ser un prospecto!"}
-        </strong>
-
+        {!loadingRegistry && !loadingJudicial && (
+          <strong className="mt-5 text-center block">
+            {isEligible
+              ? "✅ ¡El prospecto ha sido creado exitosamente!"
+              : "❌ ¡No cumple con los requisitos para ser un prospecto!"}
+          </strong>
+        )}
         <div className="flex justify-center mt-6">
           <button
             onClick={onClose}
@@ -90,9 +132,15 @@ interface ValidationItemProps {
   label: string
   isValid: boolean
   extraInfo?: string
+  isLoading?: boolean
 }
 
-function ValidationItem({ label, isValid, extraInfo }: ValidationItemProps) {
+function ValidationItem({
+  label,
+  isValid,
+  extraInfo,
+  isLoading,
+}: ValidationItemProps) {
   return (
     <div className="flex justify-between items-center border-b pb-2">
       <div>
@@ -102,7 +150,13 @@ function ValidationItem({ label, isValid, extraInfo }: ValidationItemProps) {
       <span
         className={`text-2xl ${isValid ? "text-green-500" : "text-red-500"}`}
       >
-        {isValid ? "✅" : "❌"}
+        {isLoading ? (
+          <Loader className="text-center m-1" />
+        ) : isValid ? (
+          "✅"
+        ) : (
+          "❌"
+        )}
       </span>
     </div>
   )

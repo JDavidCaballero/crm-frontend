@@ -3,17 +3,7 @@ import SearchInput from "./SearchInput"
 import { useSortableLeadsOrProspects } from "../hooks/useSortTable"
 import { useState } from "react"
 import { MainTable } from "./MainTable"
-
-export interface Lead {
-  id: number
-  firstName: string
-  lastName: string
-  identification: string
-  birthdate: string
-  age: number
-  email: string
-  phone: string
-}
+import { Lead } from "services/get/getLeads"
 
 export default function LeadList({
   setProspects,
@@ -61,6 +51,7 @@ export default function LeadList({
       {/* Mostrar el modal si hay un prospecto seleccionado */}
       {selectedLead && (
         <ConfirmationModal
+          key={selectedLead.id}
           lead={selectedLead}
           onClose={() => setSelectedLead(null)}
           setProspects={setProspects}
