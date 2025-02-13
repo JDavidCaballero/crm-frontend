@@ -29,6 +29,7 @@ const TabsTrigger = React.forwardRef<
       "data-[state=active]:bg-accent data-[state=active]:text-white data-[state=active]:shadow-md",
       className
     )}
+    data-testid="tabs-btn"
     {...props}
   />
 ))

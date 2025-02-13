@@ -34,7 +34,7 @@ export default function HomeScreen() {
   }, [fetchedLeads, leads])
 
   return (
-    <div className="min-h-screen bg-slate-100 p-8">
+    <div data-testid="appTestID" className="min-h-screen bg-slate-100 p-8">
       <h1 className="text-3xl font-bold text-center mb-8">
         CRM - Gestión de Clientes
       </h1>

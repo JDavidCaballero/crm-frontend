@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { useEffect, useState } from "react"
 import { getJudicialRecord } from "../services/get/getJudicialRecord"
-import { Lead } from "services/get/getLeads"
+import { Lead } from "../services/get/getLeads"
 import { getNationalRecord } from "../services/get/getNationalRecord"
 import Loader from "./Loader"
 

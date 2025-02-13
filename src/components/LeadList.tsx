@@ -3,7 +3,7 @@ import SearchInput from "./SearchInput"
 import { useSortableLeadsOrProspects } from "../hooks/useSortTable"
 import { useState } from "react"
 import { MainTable } from "./MainTable"
-import { Lead } from "services/get/getLeads"
+import { Lead } from "../services/get/getLeads"
 
 export default function LeadList({
   setProspects,

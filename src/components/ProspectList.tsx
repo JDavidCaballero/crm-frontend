@@ -1,7 +1,7 @@
 import { MainTable } from "./MainTable"
 import SearchInput from "./SearchInput"
 import { useSortableLeadsOrProspects } from "../hooks/useSortTable"
-import { Lead } from "services/get/getLeads"
+import { Lead } from "../services/get/getLeads"
 
 export default function ProspectList({
   prospectsData,
