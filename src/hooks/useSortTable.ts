@@ -1,4 +1,4 @@
-import { Lead } from "@components/LeadList";
+import { Lead } from "../services/get/getLeads";
 import {  useEffect, useState } from "react";
 
 interface SortConfig {
