@@ -41,7 +41,7 @@ export default function LeadList({
         actions={(lead) => (
           <button
             onClick={() => setSelectedLead(lead)}
-            className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+            className="bg-transparent bg-accent text-gray-200 font-semibold hover:text-white py-2 px-4 border hover:border-green rounded"
           >
             Validar
           </button>

@@ -25,11 +25,11 @@ export function MainTable<T extends { id: string | number }>({
       <table className="w-full border-collapse border border-gray-300">
         <thead>
           {/* Parte superior de la tabla con los nombres de las columnas*/}
-          <tr className="bg-gray-100">
+          <tr className="bg-accent">
             {columns.map(({ key, label }) => (
               <th
                 key={String(key)}
-                className="text-black border border-gray-300 px-4 py-2 text-left"
+                className="text-white border border-gray-300 px-4 py-2 text-left"
               >
                 {/*Boton para filtrar por columna*/}
                 <button
@@ -49,7 +49,7 @@ export function MainTable<T extends { id: string | number }>({
             ))}
             {/* Boton para condicionalmente agregar un boton en columna*/}
             {actions && (
-              <th className="text-black border border-gray-300 px-4 py-2 text-left">
+              <th className="text-white border border-gray-300 px-4 py-2 text-left">
                 Acciones
               </th>
             )}

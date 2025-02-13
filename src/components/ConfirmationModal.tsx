@@ -78,11 +78,11 @@ export default function ConfirmationModal({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+      <div className="bg-white border border-accent p-6 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold text-center mb-4">
           Validación de requisitos
         </h2>
-        <p className=" text-gray-500 mb-6">
+        <p className=" text-accent mb-6">
           Validación de los requisitos necesarios para convertir a{" "}
           <strong>
             {lead.firstName} {lead.lastName}
@@ -118,7 +118,7 @@ export default function ConfirmationModal({
         <div className="flex justify-center mt-6">
           <button
             onClick={onClose}
-            className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-accent hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
           >
             Cerrar
           </button>
