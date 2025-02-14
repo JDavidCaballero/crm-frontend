@@ -8,7 +8,6 @@ export default defineConfig({
   build: {
     sourcemap: true,
   },
-  base: '/crm-frontend/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
