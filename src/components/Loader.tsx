@@ -4,7 +4,7 @@ interface LoaderProps {
 
 export default function Loader({ className = "text-center m-5" }: LoaderProps) {
   return (
-    <div className={`${className}`}>
+    <div data-testid="loaderID" className={`${className}`}>
       <div role="status">
         <svg
           aria-hidden="true"

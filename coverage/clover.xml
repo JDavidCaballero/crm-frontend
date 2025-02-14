@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1739504520144" clover="3.2.0">
+  <project timestamp="1739504520144" name="All files">
+    <metrics statements="165" coveredstatements="160" conditionals="79" coveredconditionals="68" methods="56" coveredmethods="50" elements="300" coveredelements="278" complexity="0" loc="165" ncloc="165" packages="5" files="14" classes="14"/>
+    <package name="components">
+      <metrics statements="98" coveredstatements="93" conditionals="48" coveredconditionals="40" methods="34" coveredmethods="28"/>
+      <file name="Card.tsx" path="/Volumes/SSDMac/GitHub/crm-frontend/src/components/Card.tsx">
+        <metrics statements="21" coveredstatements="20" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="5"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="24" count="6" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="36" count="6" type="stmt"/>
+        <line num="46" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="51" count="6" type="stmt"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="63" count="2" type="stmt"/>
+        <line num="66" count="1" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="78" count="1" type="stmt"/>
+        <line num="80" count="1" type="stmt"/>
+      </file>
+      <file name="ConfirmationModal.tsx" path="/Volumes/SSDMac/GitHub/crm-frontend/src/components/ConfirmationModal.tsx">
+        <metrics statements="34" coveredstatements="31" conditionals="30" coveredconditionals="29" methods="13" coveredmethods="9"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="21" count="11" type="stmt"/>
+        <line num="22" count="11" type="stmt"/>
+        <line num="23" count="11" type="stmt"/>
+        <line num="24" count="11" type="stmt"/>
+        <line num="27" count="11" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="33" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="38" count="11" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="44" count="3" type="stmt"/>
+        <line num="48" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="11" type="cond" truecount="2" falsecount="0"/>
+        <line num="51" count="11" type="stmt"/>
+        <line num="53" count="8" type="stmt"/>
+        <line num="55" count="8" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="62" count="11" type="stmt"/>
+        <line num="63" count="11" type="cond" truecount="3" falsecount="0"/>
+        <line num="65" count="11" type="stmt"/>
+        <line num="66" count="8" type="cond" truecount="4" falsecount="0"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="68" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="84" count="11" type="stmt"/>
+        <line num="153" count="33" type="stmt"/>
+      </file>
+      <file name="LeadList.tsx" path="/Volumes/SSDMac/GitHub/crm-frontend/src/components/LeadList.tsx">
+        <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="17" count="8" type="stmt"/>
+        <line num="19" count="8" type="stmt"/>
+        <line num="21" count="8" type="stmt"/>
+        <line num="45" count="6" type="stmt"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+      </file>
+      <file name="Loader.tsx" path="/Volumes/SSDMac/GitHub/crm-frontend/src/components/Loader.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="5" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="6" count="16" type="stmt"/>
+      </file>
+      <file name="MainTable.tsx" path="/Volumes/SSDMac/GitHub/crm-frontend/src/components/MainTable.tsx">
+        <metrics statements="6" coveredstatements="5" conditionals="12" coveredconditionals="6" methods="5" coveredmethods="4"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="23" count="6" type="stmt"/>
+        <line num="30" count="42" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="61" count="6" type="stmt"/>
+        <line num="63" count="42" type="stmt"/>
+      </file>
+      <file name="ProspectList.tsx" path="/Volumes/SSDMac/GitHub/crm-frontend/src/components/ProspectList.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+      <file name="SearchInput.tsx" path="/Volumes/SSDMac/GitHub/crm-frontend/src/components/SearchInput.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="14" count="6" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+      </file>
+      <file name="Tabs.tsx" path="/Volumes/SSDMac/GitHub/crm-frontend/src/components/Tabs.tsx">
+        <metrics statements="14" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="12" count="5" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="24" count="10" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="41" count="10" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="hooks">
+      <metrics statements="30" coveredstatements="30" conditionals="19" coveredconditionals="17" methods="7" coveredmethods="7"/>
+      <file name="useSortTable.ts" path="/Volumes/SSDMac/GitHub/crm-frontend/src/hooks/useSortTable.ts">
+        <metrics statements="30" coveredstatements="30" conditionals="19" coveredconditionals="17" methods="7" coveredmethods="7"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="22" type="stmt"/>
+        <line num="11" count="22" type="stmt"/>
+        <line num="12" count="22" type="stmt"/>
+        <line num="17" count="22" type="stmt"/>
+        <line num="18" count="10" type="stmt"/>
+        <line num="22" count="22" type="stmt"/>
+        <line num="23" count="4" type="stmt"/>
+        <line num="24" count="4" type="cond" truecount="3" falsecount="0"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="29" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="30" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="33" count="8" type="cond" truecount="2" falsecount="0"/>
+        <line num="34" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="38" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="49" count="22" type="stmt"/>
+        <line num="50" count="7" type="stmt"/>
+        <line num="53" count="22" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="55" count="2" type="stmt"/>
+        <line num="57" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="62" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="69" count="22" type="stmt"/>
+      </file>
+    </package>
+    <package name="lib">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="utils.ts" path="/Volumes/SSDMac/GitHub/crm-frontend/src/lib/utils.ts">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="51" type="stmt"/>
+      </file>
+    </package>
+    <package name="pages">
+      <metrics statements="16" coveredstatements="16" conditionals="10" coveredconditionals="9" methods="2" coveredmethods="2"/>
+      <file name="HomeScreen.tsx" path="/Volumes/SSDMac/GitHub/crm-frontend/src/pages/HomeScreen.tsx">
+        <metrics statements="16" coveredstatements="16" conditionals="10" coveredconditionals="9" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="20" count="5" type="cond" truecount="1" falsecount="0"/>
+        <line num="26" count="5" type="stmt"/>
+        <line num="27" count="5" type="cond" truecount="3" falsecount="0"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="31" count="5" type="stmt"/>
+      </file>
+    </package>
+    <package name="services.get">
+      <metrics statements="17" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="12" coveredmethods="12"/>
+      <file name="getJudicialRecord.ts" path="/Volumes/SSDMac/GitHub/crm-frontend/src/services/get/getJudicialRecord.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+      </file>
+      <file name="getLeads.ts" path="/Volumes/SSDMac/GitHub/crm-frontend/src/services/get/getLeads.ts">
+        <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+      </file>
+      <file name="getNationalRecord.ts" path="/Volumes/SSDMac/GitHub/crm-frontend/src/services/get/getNationalRecord.ts">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="4"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

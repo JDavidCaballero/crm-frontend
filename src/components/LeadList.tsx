@@ -19,7 +19,10 @@ export default function LeadList({
     useSortableLeadsOrProspects(leadsData)
 
   return (
-    <div className="w-full bg-white p-6 rounded-lg shadow-md">
+    <div
+      data-testid="leadListID"
+      className="w-full bg-white p-6 rounded-lg shadow-md"
+    >
       <div className="mb-4">
         {/* Input para buscar en la tabla */}
         <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
@@ -41,7 +44,7 @@ export default function LeadList({
         actions={(lead) => (
           <button
             onClick={() => setSelectedLead(lead)}
-            className="bg-transparent bg-accent text-gray-200 font-semibold hover:text-white py-2 px-4 border hover:border-green rounded"
+            className="bg-transparent bg-accent border-gray-300 text-accent font-semibold hover:text-black py-2 px-4 border hover:border-accent rounded"
           >
             Validar
           </button>

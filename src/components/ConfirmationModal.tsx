@@ -21,6 +21,7 @@ export default function ConfirmationModal({
   const [score, setScore] = useState<number>(0)
   const [existsInRegistry, setExistsInRegistry] = useState<boolean>(false)
   const [noJudicialRecords, setNoJudicialRecords] = useState<boolean>(false)
+  const [loadingScore, setLoadingScore] = useState<boolean>(false)
 
   const { isLoading: isLoadingRegistry, isFetching: isFetchingRegistry } =
     useQuery({
@@ -38,8 +39,8 @@ export default function ConfirmationModal({
       queryKey: ["judicialRecords"],
       queryFn: getJudicialRecord,
       onSuccess: (data) => {
-        // Verifica si el lead tiene antecedentes judiciales
         const found = data.some((record: Lead) => record.id === lead.id)
+        // Se niega el valor para que sea más claro en el resultado
         setNoJudicialRecords(!found)
       },
     })
@@ -49,14 +50,18 @@ export default function ConfirmationModal({
 
   useEffect(() => {
     // Generar un puntaje aleatorio entre 0 y 100 al abrir el modal
-    setScore(Math.floor(Math.random() * 101))
+    setLoadingScore(true)
+
+    setTimeout(() => {
+      setScore(Math.floor(Math.random() * 101))
+      setLoadingScore(false)
+    }, 7000)
   }, [lead])
 
   // Validaciones
   const satisfactoryScore = score > 60
   const isEligible = existsInRegistry && noJudicialRecords && satisfactoryScore
 
-  // Solo actualizar prospectos cuando ambas consultas hayan terminado
   useEffect(() => {
     if (!loadingRegistry && !loadingJudicial && isEligible) {
       setProspects((prospects) => {
@@ -77,7 +82,10 @@ export default function ConfirmationModal({
   ])
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+    <div
+      data-testid="confirmModalID"
+      className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+    >
       <div className="bg-white border border-accent p-6 rounded-lg shadow-lg w-96">
         <h2 className="text-2xl font-bold text-center mb-4">
           Validación de requisitos
@@ -105,10 +113,11 @@ export default function ConfirmationModal({
             label="Calificación interna del prospecto"
             isValid={satisfactoryScore}
             extraInfo={`Puntaje: ${score}`}
+            isLoading={loadingScore}
           />
         </div>
 
-        {!loadingRegistry && !loadingJudicial && (
+        {!loadingRegistry && !loadingJudicial && !loadingScore && (
           <strong className="mt-5 text-center block">
             {isEligible
               ? "✅ ¡El prospecto ha sido creado exitosamente!"
@@ -145,7 +154,10 @@ function ValidationItem({
     <div className="flex justify-between items-center border-b pb-2">
       <div>
         <p className="font-medium">{label}</p>
-        {extraInfo && <p className="text-sm text-gray-500">{extraInfo}</p>}
+
+        {!isLoading && extraInfo && (
+          <p className="text-sm text-gray-500">{extraInfo}</p>
+        )}
       </div>
       <span
         className={`text-2xl ${isValid ? "text-green-500" : "text-red-500"}`}

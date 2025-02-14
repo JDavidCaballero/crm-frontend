@@ -20,10 +20,6 @@ export default function HomeScreen() {
   const { isLoading, data: fetchedLeads = [] } = useQuery({
     queryKey: ["leads"],
     queryFn: getLeads,
-    onError: (error) => {
-      console.error("Error al cargar leads:", error)
-      //aqui poner un toast de error
-    },
   })
 
   // Actualizar leads si se cargaron correctamente, importante verificar si es null y que la data llegue > 0 porque esto permite que no se modifique una vez el sistema ya este puesto en marcha
@@ -32,7 +28,6 @@ export default function HomeScreen() {
       setLeads(fetchedLeads)
     }
   }, [fetchedLeads, leads])
-
   return (
     <div data-testid="appTestID" className="min-h-screen bg-slate-100 p-8">
       <h1 className="text-3xl font-bold text-center mb-8">
