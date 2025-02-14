@@ -1,5 +1,19 @@
 CRM Technical Challenge - README
 
+How to Run the Project:
+
+yarn install
+
+yarn dev
+
+For test:
+
+yarn jest
+
+For coverage:
+
+yarn jest --coverage
+
 Decisions
 
 To implement the CRM functionalities, the following decisions were made based on the requirements and assumptions:
