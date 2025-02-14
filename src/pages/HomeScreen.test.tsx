@@ -144,7 +144,7 @@ describe("HomeScreen", () => {
     const setLeadsMock = jest.fn()
     ;(useState as jest.Mock).mockImplementation((initialValue) => {
       if (initialValue === null) {
-        // Aca se simula que leads se actualiza
+        // simulate the change of leads state
         return [mockFetchedLeads, setLeadsMock]
       }
       return [initialValue, jest.fn()]

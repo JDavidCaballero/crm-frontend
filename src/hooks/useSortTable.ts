@@ -18,7 +18,7 @@ export function useSortableLeadsOrProspects(data: Lead[]) {
     setFilteredData(data);
   }, [data]);
 
-  // Función para ordenar la tabla
+  // Function to sort the table  
   const sortTable = (key: keyof Lead) => {
     let direction: "asc" | "desc" = "asc";
     if (sortConfig.key === key && sortConfig.direction === "asc") {
@@ -45,11 +45,11 @@ export function useSortableLeadsOrProspects(data: Lead[]) {
     setSortConfig({ key, direction });
   };
 
-  // Función para remover acentos de una cadena de texto
+  // Function to remove accents from a string  
   const removeAccents = (str: string) =>
     str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-  // Función para filtrar la tabla según el input
+  // Function to filter the table based on the input  
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = removeAccents(e.target.value.toLowerCase());
     setSearchTerm(e.target.value);

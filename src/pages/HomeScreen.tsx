@@ -22,7 +22,8 @@ export default function HomeScreen() {
     queryFn: getLeads,
   })
 
-  // Actualizar leads si se cargaron correctamente, importante verificar si es null y que la data llegue > 0 porque esto permite que no se modifique una vez el sistema ya este puesto en marcha
+  // Update leads if they were loaded correctly.
+  // It is important to check if it is null and that the data is greater than 0, as this ensures that it is not modified once the system is already in operation
   useEffect(() => {
     if (leads === null && fetchedLeads.length > 0) {
       setLeads(fetchedLeads)

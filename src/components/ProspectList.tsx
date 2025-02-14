@@ -16,10 +16,8 @@ export default function ProspectList({
       {prospectsData.length > 0 ? (
         <>
           <div className="mb-4">
-            {/* Input para buscar en la tabla */}
             <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
           </div>
-
           <MainTable
             data={filteredData}
             columns={[

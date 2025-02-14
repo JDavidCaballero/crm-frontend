@@ -11,10 +11,10 @@ test("Return the leads when the function is used", async () => {
 });
 
 test("should reject with an error on failure", async () => {
-    //Se mockea la funcion random para que saque el porcentaje de error
+    // Mock the random function to produce the error percentage  
     jest.spyOn(global.Math, "random").mockReturnValue(0.1);
     const promise = getLeads();
-    // Se avanza el tiempo por el timeout
+    // Advance time for the timeout  
     await expect(promise).rejects.toThrow("Failed to fetch leads");
   });
 

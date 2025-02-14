@@ -28,7 +28,7 @@ export default function ConfirmationModal({
       queryKey: ["nationalRegistry"],
       queryFn: getNationalRecord,
       onSuccess: (data) => {
-        // Verifica si el lead existe en el registro nacional
+        // Check if the lead exists in the national registry
         const found = data.some((record: Lead) => record.id === lead.id)
         if (found !== existsInRegistry) setExistsInRegistry(found)
       },
@@ -40,7 +40,7 @@ export default function ConfirmationModal({
       queryFn: getJudicialRecord,
       onSuccess: (data) => {
         const found = data.some((record: Lead) => record.id === lead.id)
-        // Se niega el valor para que sea más claro en el resultado
+        // Negate the value to make the result clearer
         setNoJudicialRecords(!found)
       },
     })
@@ -49,16 +49,15 @@ export default function ConfirmationModal({
   const loadingJudicial = isLoadingJudicial || isFetchingJudicial
 
   useEffect(() => {
-    // Generar un puntaje aleatorio entre 0 y 100 al abrir el modal
+    // Generate a random score between 0 and 100 when opening the modal
     setLoadingScore(true)
-
     setTimeout(() => {
       setScore(Math.floor(Math.random() * 101))
       setLoadingScore(false)
     }, 7000)
   }, [lead])
 
-  // Validaciones
+  // validations
   const satisfactoryScore = score > 60
   const isEligible = existsInRegistry && noJudicialRecords && satisfactoryScore
 

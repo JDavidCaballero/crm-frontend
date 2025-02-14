@@ -9,6 +9,6 @@ describe("getNationalRecord", () => {
         await waitFor(() => {
         expect(nationalRecords).toEqual(nationalRecordsJson);
     })
-    //Se pone 6000 para esperar al timeout de la peticion
+   // Set 6000 to wait for the request timeout  
 },6000)  
 })

@@ -24,14 +24,14 @@ export function MainTable<T extends { id: string | number }>({
     <div className="overflow-x-auto">
       <table className="w-full border-collapse border border-gray-300">
         <thead>
-          {/* Parte superior de la tabla con los nombres de las columnas*/}
+          {/* Top section of the table with column names */}
           <tr className="bg-accent">
             {columns.map(({ key, label }) => (
               <th
                 key={String(key)}
                 className="text-white border border-gray-300 px-4 py-2 text-left"
               >
-                {/*Boton para filtrar por columna*/}
+                {/* Button to conditionally add a button in a column */}
                 <button
                   onClick={() => sortTable(key)}
                   className="flex items-center space-x-1"
@@ -47,7 +47,7 @@ export function MainTable<T extends { id: string | number }>({
                 </button>
               </th>
             ))}
-            {/* Boton para condicionalmente agregar un boton en columna*/}
+            {/* Table body with data based on the provided dataset */}
             {actions && (
               <th className="text-white border border-gray-300 px-4 py-2 text-left">
                 Acciones
@@ -55,7 +55,7 @@ export function MainTable<T extends { id: string | number }>({
             )}
           </tr>
         </thead>
-        {/* Cuerpo de la tabla con los datos segun la data*/}
+        {/* body of the table with props data*/}
         <tbody>
           {data.map((item) => (
             <tr key={item.id} className="border border-gray-300">

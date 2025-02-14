@@ -24,7 +24,6 @@ export default function LeadList({
       className="w-full bg-white p-6 rounded-lg shadow-md"
     >
       <div className="mb-4">
-        {/* Input para buscar en la tabla */}
         <SearchInput searchTerm={searchTerm} handleSearch={handleSearch} />
       </div>
 
@@ -51,7 +50,7 @@ export default function LeadList({
         )}
       />
 
-      {/* Mostrar el modal si hay un prospecto seleccionado */}
+      {/* Modal that shows the validations to convert a lead in a prospect */}
       {selectedLead && (
         <ConfirmationModal
           key={selectedLead.id}

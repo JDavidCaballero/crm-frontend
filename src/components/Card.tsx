@@ -1,8 +1,7 @@
 import { cn } from "../lib/utils"
 import * as React from "react"
 
-// Este componente es un util para otros componentes que se utiliza para crear una card con un header, un footer y un contenido
-
+// This component is a utility for other components, used to create a card with a header, a footer, and content
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>

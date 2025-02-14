@@ -177,7 +177,7 @@ describe("ConfirmationModal", () => {
     ;(getNationalRecord as jest.Mock).mockResolvedValue([mockLead])
     ;(getJudicialRecord as jest.Mock).mockResolvedValue([])
 
-    // Simular el comportamiento de useQuery
+    // simulate usequery behavior
     ;(useQuery as jest.Mock).mockImplementation(({ queryKey, onSuccess }) => {
       if (queryKey[0] === "nationalRegistry") {
         onSuccess([mockLead])
@@ -215,7 +215,7 @@ describe("ConfirmationModal", () => {
       expect(mockSetProspects).toHaveBeenCalledWith(expect.any(Function))
     })
 
-    // Aca se verifica que la función se pasó a setProspects y  que devuelve el valor esperado
+    // Here, it is verified that the function was passed to setProspects and returns the expected value
     const updateProspectsFunction = mockSetProspects.mock.calls[0][0]
     const updatedProspects = updateProspectsFunction([])
     expect(updatedProspects).toEqual([mockLead])
