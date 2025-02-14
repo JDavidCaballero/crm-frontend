@@ -2,17 +2,15 @@ CRM Technical Challenge - README
 
 How to Run the Project:
 
-yarn install
-
-yarn dev
+    yarn install && yarn dev
 
 For test:
 
-yarn jest
+    yarn jest
 
 For coverage:
 
-yarn jest --coverage
+    yarn jest --coverage
 
 Decisions
 
